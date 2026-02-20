@@ -4,9 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Garden Sudoku</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 20px;
+        }
+        td {
+            width: 30px;
+            height: 30px;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 18px;
+        }
+        .filled {
+            background-color: #e0ffe0;
+        }
+        .button {
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to Garden Sudoku</h1>
-    <p>Solve puzzles and have fun!</p>
+    <h1>Garden Sudoku</h1>
+    <table id="sudokuGrid"></table>
+    <button class="button" onclick="generateGrid()">Generate Sudoku</button>
+    <script>
+        const gridSize = 9;
+        const sudokuGrid = document.getElementById('sudokuGrid');
+
+        function createGrid() {
+            for (let i = 0; i < gridSize; i++) {
+                const row = document.createElement('tr');
+                for (let j = 0; j < gridSize; j++) {
+                    const cell = document.createElement('td');
+                    cell.contentEditable = true;
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
+                    row.appendChild(cell);
+                }
+                sudokuGrid.appendChild(row);
+            }
+        }
+
+        function generateGrid() {
+            // Placeholder: Function to generate a Sudoku puzzle
+            alert('Function to generate the Sudoku grid goes here.');
+        }
+
+        createGrid();
+    </script>
 </body>
 </html>
