@@ -6,41 +6,64 @@
     <title>Garden Sudoku</title>
     <style>
         body {
-            background: url('path/to/botanical-background.svg');
             font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
         }
-        /* Add other necessary CSS styles for the Garden Sudoku game */
+        .sudoku {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 2px;
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ccc;
+            font-size: 24px;
+            background-color: white;
+        }
+        .cell.correct {
+            background-color: #d4edda;
+        }
+        .cell.incorrect {
+            background-color: #f8d7da;
+        }
     </style>
 </head>
 <body>
-    <div id="sudoku-board"></div>
-    <div id="timer">00:00</div>
+    <div class="sudoku" id="sudoku-grid"></div>
     <script>
-        // JavaScript functionality goes here
-        // Include Telegram Web App integration, Sudoku puzzle generation, validation, etc.
+        const sudokuGrid = document.getElementById('sudoku-grid');
+        const initialBoard = [
+            [5, 3, 0, 0, 7, 0, 0, 0, 0],
+            [6, 0, 0, 1, 9, 5, 0, 0, 0],
+            [0, 9, 8, 0, 0, 0, 0, 6, 0],
+            [8, 0, 0, 0, 6, 0, 0, 0, 3],
+            [4, 0, 0, 8, 0, 3, 0, 0, 1],
+            [7, 0, 0, 0, 2, 0, 0, 0, 6],
+            [0, 6, 0, 0, 0, 0, 2, 8, 0],
+            [0, 0, 0, 4, 1, 9, 0, 0, 5],
+            [0, 0, 0, 0, 8, 0, 0, 7, 9]
+        ];
 
-        function initGame() {
-            // Initialize game logic
+        function createBoard() {
+            initialBoard.forEach((row) => {
+                row.forEach((value) => {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.textContent = value ? value : '';
+                    sudokuGrid.appendChild(cell);
+                });
+            });
         }
 
-        // Timer functionality
-        let timer;
-        let seconds = 0;
-        function startTimer() {
-            timer = setInterval(function() {
-                seconds++;
-                document.getElementById('timer').innerText = formatTime(seconds);
-            }, 1000);
-        }
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainderSeconds = seconds % 60;
-            return `${String(minutes).padStart(2, '0')}:${String(remainderSeconds).padStart(2, '0')}`;
-        }
-
-        // More game logic...
-
-        initGame();
+        createBoard();
     </script>
 </body>
 </html>
